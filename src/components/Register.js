@@ -19,6 +19,7 @@ const Register = () => {
       }) 
       }, [user])
     
+    //to signup or register the user with the email and password 
     const signup = (e) => {
         e.preventDefault()
         auth.createUserWithEmailAndPassword(email, password)
@@ -28,7 +29,6 @@ const Register = () => {
       })
       })
     .catch((error) => console.log(error.message))
-    // window.location.reload()
     }
     
     return (
