@@ -7,6 +7,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    //to login user with registered email and password
     const handleLogin = (e) => {
         e.preventDefault()
         auth.signInWithEmailAndPassword(email, password)
