@@ -11,7 +11,7 @@ const firebaseConfig = firebase.initializeApp({
     measurementId: "G-R283K1ZVJ0"
   });
 
-// const db = firebaseApp.firestore()
+// firebase authorization to register and login accounts with email and password 
 const auth = firebase.auth()
 const storage = firebase.storage()
 
