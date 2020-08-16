@@ -1,55 +1,52 @@
 import React,{useEffect,useState} from 'react'
 import styles from './Register.module.css'
 import {auth} from '../firebase'
-import firebase from "firebase";
-
 
 const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [user, setUser] = useState('unknown')
+    const [user, setUser] = useState(null)
 
-    // console.log(name)
-
-    useEffect(() => {
-        var usern = firebase.auth().currentUser;
-
-        if (usern) {
-            console.log(usern)
-        } else {
-            setUser('unknown')
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser)=>{
+      if(authUser){
+        setUser(authUser)
         }
-
-    }, [user, name])
-
-    // const onNameChange =(e) => {
-    //     setName = e.target.value
-    //     console.log(e.target.value)
-    // }
+      else{
+        setUser(null)
+      }
+      }) 
+      }, [user])
     
-    const signup = () => {
+    const signup = (e) => {
+        e.preventDefault()
         auth.createUserWithEmailAndPassword(email, password)
     .then((authUser) => {
       return authUser.user.updateProfile({
         displayName: name
       })
-    })
-    .catch((error) => alert(error.message))
+      })
+    .catch((error) => console.log(error.message))
+    // window.location.reload()
     }
+    
     return (
         <div className="container">
-        <form className={styles.box} action="index.html" method="post">
+        <form onSubmit={(e) => signup(e)} className={styles.box}>
             <h1>Register</h1>
-            <h1>{user}</h1>
+            {
+                user? <div><button onClick={() => auth.signOut()}> Sign out</button> </div> : <h1></h1>
+            }
             <input type="text" onChange={(e) => setName(e.target.value)} name="" placeholder="Full Name"></input>
             <input type="text" onChange={(e) => setEmail(e.target.value)} name="" placeholder="Email"></input>
             <input type="password" onChange={(e) => setPassword(e.target.value)} name="" placeholder="Password"></input>
             <input type="password" name="" placeholder="Confirm Password"></input>
-            <input type="submit" onClick={signup} name="" value="Register"></input>
+            <input type="submit" name="" value="Register"></input>
         </form>
         </div>
     )
+    
 }
 
 export default Register

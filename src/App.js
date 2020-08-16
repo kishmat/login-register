@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './App.css';
 import Register from './components/Register'
 import Login from './components/Login';
@@ -9,11 +9,11 @@ import {
   Link
 } from "react-router-dom";
 import Home from './components/Home';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+function App() {  
   return (
     <div className="App">
+
       <Router>
       <nav>
           <ul>
@@ -26,9 +26,13 @@ function App() {
             <li>
               <Link to="/login">Login</Link>
             </li>
+            <li>
+              
+            </li>
           </ul>
         </nav>
-      
+        
+     
       <Switch>
       <Route exact path="/">
           <Home/>
