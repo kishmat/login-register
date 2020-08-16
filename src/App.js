@@ -18,13 +18,13 @@ function App() {
       <nav>
           <ul>
             <li>
-              <Link to="/login-register">Home</Link>
+              <Link to="/">Home</Link> //link to the homepage
             </li>
             <li>
-              <Link to="/login-register/register">Register</Link>
+              <Link to="/register">Register</Link> //link to Register page
             </li>
             <li>
-              <Link to="/login-register/login">Login</Link>
+              <Link to="/login">Login</Link> //Link to Login page
             </li>
             <li>
               
@@ -34,14 +34,14 @@ function App() {
         
      
       <Switch>
-      <Route exact path="/login-register">
-          <Home/>
+      <Route exact path="/">
+          <Home/> //Home component
         </Route>
-        <Route path="/login-register/register">
-          <Register/>
+        <Route path="/register">
+          <Register/> //Register component
         </Route>
-        <Route path="/login-register/login">
-          <Login/>
+        <Route path="/login">
+          <Login/> //Login component
         </Route>
       </Switch>
       </Router>
